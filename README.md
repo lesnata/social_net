@@ -54,7 +54,7 @@ To run this project locally, make the following:
 
 ```
 $ git clone https://github.com/lesnata/social_net.git
-$ cd alias
+$ cd social_net
 $ virtualenv venv_social
 $ source venv_social/bin/activate
 $ (venv_social)$ pip install -r requirements.txt
