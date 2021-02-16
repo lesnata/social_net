@@ -1,10 +1,10 @@
 ## Table of contents
 * [General info](#general-info)
 * [Routes](#routes)
+* [Postman collection](#postman-collection)
 * [Technologies](#technologies)
 * [Style conventions](#style-conventions)
 * [Setup](#setup)
-* [Tests](#tests)
 
 ## General info
 The app introduces an Social networking app with Post and Like objects,
@@ -30,6 +30,10 @@ and when he made a last request to the service.
 - analytics/, views.analytics [Analytics of likes]
 - user-activity/, views.user_activity [User activity]
 
+
+## Postman collection
+Postman Prod collection link: 
+https://www.getpostman.com/collections/7d056935cd99a50194c7
 
 ## Technologies
 Project is created with:
