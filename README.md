@@ -32,7 +32,7 @@ and when he made a last request to the service.
 
 
 ## Postman collection
-Postman Prod collection link: 
+Postman collection link: 
 https://www.getpostman.com/collections/7d056935cd99a50194c7
 
 ## Technologies
