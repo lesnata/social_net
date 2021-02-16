@@ -1,11 +1,8 @@
 from datetime import datetime
-
 from django.db import models
 from django.contrib.auth.models import User
-
 from django.db.models.signals import pre_save
 from django.utils.text import slugify
-from django.dispatch import receiver
 
 # Create your models here.
 
@@ -21,7 +18,7 @@ class Post(models.Model):
         return self.title
 
     class Meta:
-        ordering = ['-date_published']
+        ordering = ["-date_published"]
 
 
 class Like(models.Model):
@@ -34,6 +31,10 @@ class Like(models.Model):
         return self.liked
 
     def like_unlike(self):
+        """
+            like_unlike() method switches
+            'liked' Boolean field to opposite value.
+        """
         self.liked = not self.liked
         self.date = datetime.now()
         return self.liked
@@ -41,8 +42,8 @@ class Like(models.Model):
 
 def pre_save_post_receiver(sender, instance, *args, **kwargs):
     if not instance.slug:
-        instance.slug = slugify(instance.author.username + "-" + instance.title)
+        instance.slug = slugify(instance.author.username +
+                                "-" + instance.title)
 
 
 pre_save.connect(pre_save_post_receiver, sender=Post)
-
