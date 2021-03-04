@@ -43,6 +43,7 @@ Project is created with:
 * djangorestframework-simplejwt==4.6.0
 * black==20.8b1
 * flake8==3.8.4
+* coverage==5.5
 
 
 ## Style conventions
