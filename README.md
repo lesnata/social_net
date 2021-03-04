@@ -5,6 +5,7 @@
 * [Technologies](#technologies)
 * [Style conventions](#style-conventions)
 * [Setup](#setup)
+* [Tests](#tests)
 
 ## General info
 The app introduces an Social networking app with Post and Like objects,
@@ -67,3 +68,33 @@ Tokio
 tokio-tomato-1
 ```
 
+## Tests
+* Tests are separated into distinct folder /tests/ with models and views tests. 
+* Unit test coverage is 99%. 
+* Checked with 'Coverage.py' lib:
+
+```
+Name                                        Stmts   Miss  Cover
+---------------------------------------------------------------
+app/__init__.py                                 0      0   100%
+app/admin.py                                    4      0   100%
+app/apps.py                                     3      0   100%
+app/migrations/0001_initial.py                  7      0   100%
+app/migrations/0002_auto_20210215_1003.py       4      0   100%
+app/migrations/__init__.py                      0      0   100%
+app/models.py                                  30      0   100%
+app/serializers.py                             32      0   100%
+app/tests/__init__.py                           0      0   100%
+app/tests/test_models.py                       28      0   100%
+app/tests/test_views.py                       136      0   100%
+app/urls.py                                     3      0   100%
+app/views.py                                   86      3    97%
+---------------------------------------------------------------
+TOTAL                                         333      3    99%
+
+```
+
+To check tests run: 
+```
+python manage.py test ./app/tests/
+```

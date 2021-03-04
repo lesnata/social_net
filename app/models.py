@@ -28,7 +28,7 @@ class Like(models.Model):
     liked = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.liked
+        return str(self.liked)
 
     def like_unlike(self):
         """

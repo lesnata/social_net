@@ -59,6 +59,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
         if password != password2:
             raise serializers.ValidationError({"password": "The two passwords differ."})
         user = User(username=username, email=email)
+        # Ensure your password is being hashed before it is stored in your db
         user.set_password(password)
         user.save()
         return user

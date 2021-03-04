@@ -36,6 +36,10 @@ def registration(request):
                 "access": "eyJ0eXAiOiJKV1QiLCJhbGciO....."
             }
     """
+
+    # "detail": "No active account found with the given credentials"
+    # Ensure your password is being hashed before it is stored in your db
+
     serializer = UserCreateSerializer(data=request.data)
     if not serializer.is_valid():
         return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
@@ -176,7 +180,6 @@ def post_like(request, id):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     else:
         like.like_unlike()
@@ -227,7 +230,7 @@ def analytics(request):
         date_to_converted = datetime.fromisoformat(date_to)
     except ValueError:
         return f"date_from ({date_from}) or date_to ({date_to}) " \
-            f"parameters are not in Date format"
+            f"parameters are not in format Y-m-d"
 
     else:
         query = (
@@ -267,19 +270,14 @@ def user_activity(request):
 
     """
 
-    try:
-        user = User.objects.get(id=request.user.id)
-    except User.DoesNotExist:
-        return HttpResponse(status=404)
+    user = User.objects.get(id=request.user.id)
+    last_login = user.last_login
+    last_like = Like.objects.filter(user=request.user).last()
+    last_post = Post.objects.filter(author=request.user).last()
 
-    else:
-        last_login = user.last_login
-        last_like = Like.objects.filter(user=request.user).last()
-        last_post = Post.objects.filter(author=request.user).last()
-
-        data = {
-            "last_login": last_login,
-            "last_like": last_like.date,
-            "last_post": last_post.date_published,
-        }
-        return Response(data, status=status.HTTP_200_OK)
+    data = {
+        "last_login": last_login,
+        "last_like": last_like.date,
+        "last_post": last_post.date_published,
+    }
+    return Response(data, status=status.HTTP_200_OK)
